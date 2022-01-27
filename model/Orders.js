@@ -13,10 +13,6 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  userId: {
-    type: hash,
-    required: true,
-  },
   dob: {
     type: Date,
     required: false,
@@ -29,14 +25,6 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  Password: {
-    type: hash,
-    required: true,
-  },
-  walletId: {
-    type: hash,
-    required: true,
-  },
 });
 
-module.exports = mongoose.model("user", UserSchema);
+module.exports = mongoose.model("orders", UserSchema);
