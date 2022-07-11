@@ -1,30 +1,41 @@
 const { hash } = require("bcryptjs");
 const mongoose = require("mongoose");
+const myDB = mongoose.connection.useDb("organizations");
 const UserSchema = new mongoose.Schema({
-  name: {
-    type: Number,
-    required: String,
-  },
-  emailId: {
+  orderId: {
     type: String,
     required: true,
+    unique: true,
   },
-  phoneNo: {
+  initiatorId: {
+    type: String,
+  },
+  acknowledgerId: {
+    type: String,
+  },
+  creationTime: {
     type: Number,
     required: true,
   },
-  dob: {
-    type: Date,
-    required: false,
-  },
-  trainsAt: {
-    type: hash,
-    required: false,
-  },
-  TokenBal: {
-    type: Number,
-    required: true,
-  },
+  associatedAmount: Number,
+  attempts: [
+    {
+      type: {
+        type: String,
+      },
+      timerLog: {
+        type: Number,
+      },
+      transactionId: {
+        type: String,
+      },
+      status: {
+        type: Boolean,
+      },
+    },
+  ],
 });
-
-module.exports = mongoose.model("orders", UserSchema);
+const createOrders = (orderTableName) => {
+  return myDB.model(`${orderTableName}_orders`, UserSchema);
+};
+module.exports = createOrders;

@@ -1,33 +1,28 @@
 const { hash } = require("bcryptjs");
 const mongoose = require("mongoose");
+const currency = require("./Currency");
 const UserSchema = new mongoose.Schema({
-  name: {
+  organizationId: {
     type: String,
-    required: true,
-  },
-  emailId: {
-    type: String,
-    required: true,
+    required: String,
     unique: true,
   },
-  userId: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  userName: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  userType: {
+  organizationName: {
     type: String,
     required: true,
   },
-  password: {
+  authId: {
+    type: String,
+    required: true,
+  },
+  currencyId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "currencies",
+  },
+  ledgerId: {
     type: String,
     required: true,
   },
 });
 
-module.exports = mongoose.model("user", UserSchema);
+module.exports = mongoose.model("organizations", UserSchema);

@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
-  name: {
+  transactionId: {
     type: Number,
     required: String,
   },
-  emailId: {
+  associatedAmt: {
     type: String,
     required: true,
   },
-  phoneNo: {
+  totalCount: {
     type: Number,
     required: true,
   },
 });
 
-module.exports = mongoose.model("manager", UserSchema);
+module.exports = mongoose.model("currency", UserSchema);
